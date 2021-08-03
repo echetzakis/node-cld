@@ -1,3 +1,17 @@
+# about this fork
+
+This is a forked version which includes pre-build binaries for:
+
+* MacOS (darwin-x64)
+* Alpine Linux (linux-x64)
+
+The binaries are located in the `prebuilds` folder and are generated/loaded with the help of:
+
+* [prebuildify](https://github.com/prebuild/prebuildify)
+* [prebuildify-cross](https://github.com/prebuild/prebuildify-cross)
+* [node-gyp-build](https://github.com/prebuild/node-gyp-build)
+
+✄  - - - - - - - - - - - - - - - -  *cut here for original README* - - - - - - - - - - - - - - - -
 # node-cld
 [![*NIX Build Status](https://secure.travis-ci.org/dachev/node-cld.png)](https://travis-ci.org/dachev/node-cld)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/dachev/node-cld?svg=true&retina=true)](https://ci.appveyor.com/project/dachev/node-cld)
