@@ -1,5 +1,5 @@
 {
-  "name": "cld",
+  "name": "@elchetz/cld",
   "description": "Language detection for Javascript. Based on the CLD2 (Compact Language Detector) library from Google. Highly optimized for space and speed. Runs about 10x faster than other libraries. Detects over 160 languages. Full test coverage. Runs on Linux, OS X, and Windows.",
   "keywords": [
     "language",
@@ -9,16 +9,22 @@
     "cld2"
   ],
   "version": "2.7.0",
+  "private": "true",
   "main": "./index",
   "dependencies": {
     "glob": "7",
     "node-addon-api": "*",
+    "node-gyp-build": "^4.2.3",
     "underscore": "^1.6.0"
   },
   "scripts": {
-    "build": "node-gyp rebuild",
+    "clean": "rm -rf ./prebuilds",
+    "prebuild": "npm run clean",
+    "build": "npm run build:native && npm run build:alpine",
+    "build:native": "prebuildify --napi --strip",
+    "build:alpine": "prebuildify-cross -i alpine --napi --strip",
     "test": "node test/runner.js",
-    "postinstall": "node bin/postinstall.js"
+    "install": "node-gyp-build"
   },
   "author": {
     "name": "Blagovest Dachev",
@@ -30,7 +36,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/dachev/cld.git"
+    "url": "git://github.com/echetzakis/node-cld.git"
   },
   "licenses": [
     {
@@ -40,5 +46,10 @@
   ],
   "engines": {
     "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "node-gyp": "^7.1.2",
+    "prebuildify": "^4.1.2",
+    "prebuildify-cross": "^4.0.1"
   }
 }
