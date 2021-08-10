@@ -24,7 +24,8 @@
     "build:native": "prebuildify --napi --strip",
     "build:alpine": "prebuildify-cross -i alpine --napi --strip",
     "test": "node test/runner.js",
-    "install": "node-gyp-build"
+    "install": "node-gyp-build",
+    "postinstall": "node bin/postinstall.js"
   },
   "author": {
     "name": "Blagovest Dachev",
@@ -50,6 +51,7 @@
   "devDependencies": {
     "node-gyp": "^7.1.2",
     "prebuildify": "^4.1.2",
-    "prebuildify-cross": "^4.0.1"
+    "prebuildify-cross": "^4.0.1",
+    "rimraf": "^3.0.2"
   }
 }

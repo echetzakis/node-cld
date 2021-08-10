@@ -1,13 +1,26 @@
-var path = require('path');
-var fs   = require('fs');
-var glob = require('glob');
-var _    = require('underscore');
+const path = require('path');
+const fs   = require('fs');
+const glob = require('glob');
+const _    = require('underscore');
+const rimraf = require('rimraf');
 
-deleteBuildFiles(function(err) {
+deleteDepSources(function(err) {
+  deleteBuildFiles(function(err) {
+  });
 });
 
+function deleteDepSources(cb) {
+  const buildPath = path.resolve(__dirname, '..', 'build');
+  const keepDeps = fs.existsSync(buildPath);
+  if(keepDeps){
+      return cb(null);
+  }
+  const depsPath = path.resolve(__dirname, '..', 'deps');
+  rimraf(depsPath, cb);
+}
+
 function deleteBuildFiles(cb) {
-  var pattern = path.resolve(__dirname, '..', 'build', '**', '*');
+  const pattern = path.resolve(__dirname, '..', 'build', '**', '*');
   glob(pattern, {nodir:true}, function(err, files) {
     if (err) {
       return cb(err);
@@ -17,8 +30,8 @@ function deleteBuildFiles(cb) {
       return /cld\.(node|pdb)$/.test(val)
     });
 
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
       fs.unlinkSync(file);
     }
 
