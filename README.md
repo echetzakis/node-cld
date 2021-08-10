@@ -2,7 +2,7 @@
 
 This is a forked version which includes pre-build binaries for:
 
-* MacOS (darwin-x64)
+* MacOS (darwin-x64, darwin-arm64)
 * Alpine Linux (linux-x64)
 
 The binaries are located in the `prebuilds` folder and are generated/loaded with the help of:
